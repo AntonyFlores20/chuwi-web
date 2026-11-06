@@ -1,0 +1,38 @@
+:root { --navy:#0b2a4a; --teal:#12a4b5; --red:#e53935; --ink:#0b2a4a; }
+* { box-sizing: border-box; margin: 0; }
+html, body { height: 100%; }
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #fff; overflow: hidden; background: var(--navy); }
+
+.screen { display: none; position: fixed; inset: 0; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
+.screen.active { display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+
+/* Pantalla 1 */
+#welcome { background: linear-gradient(var(--navy), var(--teal)); text-align: center; }
+#welcome h1 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 800; }
+#welcome p { margin-top: 8px; opacity: .85; max-width: 32ch; margin-inline: auto; }
+.video-card { width: 100%; max-width: 520px; aspect-ratio: 16/9; border-radius: 28px; overflow: hidden; box-shadow: 0 14px 34px #0007; background: #000; }
+.video-card video { width: 100%; height: 100%; object-fit: cover; }
+
+.btn { background: var(--red); color: #fff; border: 0; border-radius: 50px; padding: 16px 32px;
+       font-size: 1.2rem; font-weight: 700; width: 100%; max-width: 420px; cursor: pointer; box-shadow: 0 8px 18px #0005; }
+.btn:active { transform: scale(.98); }
+.hidden { display: none; }
+
+/* Pantalla 2 */
+#map { padding: 0; background: #000; }
+#map a-scene { position: absolute; inset: 0; }
+.selectores { position: absolute; top: max(12px, env(safe-area-inset-top)); left: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 10; }
+.selectores select { padding: 10px 12px; border-radius: 12px; font-size: 1rem; border: 0; background: #fffe; color: var(--ink); }
+.hint { position: absolute; bottom: 90px; left: 0; right: 0; text-align: center; z-index: 10; text-shadow: 0 1px 6px #000; transition: opacity .3s; }
+.hint.off { opacity: 0; }
+#btnUni { position: absolute; bottom: max(20px, env(safe-area-inset-bottom)); right: 16px; width: auto; z-index: 10; }
+
+/* Pantalla 3 */
+#uni { background: linear-gradient(#0008, #0008), url('../assets/fondo_universidad.jpg') center/cover, var(--navy); }
+.panel { background: #fffe; color: var(--ink); border-radius: 20px; padding: 20px; width: 100%; max-width: 640px; margin-top: 8vh; }
+.panel h2 { font-size: 1.5rem; }
+.cols { display: flex; gap: 16px; margin-top: 14px; min-height: 140px; }
+.cols ul { list-style: none; padding: 0; min-width: 140px; border-right: 2px solid #12a4b555; padding-right: 12px; }
+.cols li { padding: 10px; cursor: pointer; border-radius: 8px; font-weight: 600; }
+.cols li:hover, .cols li.sel { background: #12a4b52a; }
+#uniInfo { flex: 1; line-height: 1.5; }

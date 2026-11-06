@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chuwi AR · ESAN</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+
+  <!-- PANTALLA 1: Bienvenida -->
+  <section id="welcome" class="screen active">
+    <header>
+      <h1>¡Bienvenidos!</h1>
+      <p>Explora el mundo con Chuwi y descubre tu próxima universidad</p>
+    </header>
+    <div class="video-card">
+      <video src="assets/chuwi_intro.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <button id="btnStart" class="btn">Iniciar aventura</button>
+  </section>
+
+  <!-- PANTALLA 2: Mapa AR -->
+  <section id="map" class="screen">
+    <a-scene id="ar"
+      mindar-image="imageTargetSrc: ./assets/targets.mind; autoStart: false; uiLoading: no; uiScanning: no; uiError: no"
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false">
+
+      <a-assets timeout="15000">
+        <img id="mapaImg" src="assets/mapa.png">
+        <a-asset-item id="chuwiModel" src="assets/models/chuwi.glb"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0" id="target">
+        <!-- Mapa (plano con tu PNG). Ajusta width/height a la proporción de tu imagen -->
+        <a-plane src="#mapaImg" width="1" height="0.6" position="0 0 0"></a-plane>
+        <!-- Chuwi. Si sale acostado cambia rotation a "0 0 0" -->
+        <a-gltf-model id="chuwi" src="#chuwiModel"
+          position="0 0 0.05" scale="0.15 0.15 0.15" rotation="90 0 0"
+          animation-mixer></a-gltf-model>
+      </a-entity>
+    </a-scene>
+
+    <div class="selectores">
+      <select id="continente" aria-label="Continente"></select>
+      <select id="pais" aria-label="País"><option value="">País</option></select>
+    </div>
+    <p id="hint" class="hint">Apunta la cámara al marcador</p>
+    <button id="btnUni" class="btn hidden">Ver universidad</button>
+  </section>
+
+  <!-- PANTALLA 3: Universidad -->
+  <section id="uni" class="screen">
+    <div class="panel">
+      <h2 id="uniNombre">Universidad</h2>
+      <div class="cols">
+        <ul id="uniSecciones"></ul>
+        <div id="uniInfo">Elige una sección</div>
+      </div>
+    </div>
+    <button id="btnBack" class="btn">Volver al mapa</button>
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

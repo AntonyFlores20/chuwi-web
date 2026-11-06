@@ -1,0 +1,25 @@
+CHUWI AR (WEB) - PASOS RAPIDOS
+
+1) COLOCA TUS ARCHIVOS en la carpeta assets/ con estos nombres exactos:
+   assets/chuwi_intro.mp4        -> video de bienvenida
+   assets/mapa.png               -> imagen del mapa (se dibuja sobre el marcador)
+   assets/targets.mind           -> marcador compilado (ver paso 2)
+   assets/models/chuwi.glb       -> modelo 3D de Chuwi
+   assets/fondo_universidad.jpg  -> fondo de la pantalla 3 (opcional)
+
+2) CREAR targets.mind
+   - Busca "MindAR image target compiler" (hiukim.github.io/mind-ar-js-doc/tools/compile)
+   - Sube la imagen del marcador, pulsa Start y luego Download.
+   - Guarda como assets/targets.mind
+   - IMPRIME o muestra en otra pantalla ESA MISMA imagen para probar.
+
+3) PROBAR
+   - En VS Code instala la extension "Live Server", clic derecho en index.html -> Open with Live Server.
+   - Para el CELULAR necesitas HTTPS: sube la carpeta a Netlify (arrastrar y soltar en app.netlify.com/drop)
+     o a GitHub Pages, y abre el link en el celular.
+
+4) AJUSTES
+   - Chuwi acostado: en index.html cambia rotation="90 0 0" por rotation="0 0 0".
+   - Tamano de Chuwi: scale="0.15 0.15 0.15".
+   - Proporcion del mapa: width/height del <a-plane>.
+   - Posicion de cada pais: js/app.js (x, y).
